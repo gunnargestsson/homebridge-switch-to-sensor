@@ -1,9 +1,9 @@
 /**
  * This is the name of the platform that users will use to register the plugin in the Homebridge config.json
  */
-export const PLATFORM_NAME = 'SwitchToSensorHomebridgePlugin';
+export const PLATFORM_NAME = 'SwitchToSensor';
 
 /**
  * This must match the name of your plugin as defined the package.json
  */
-export const PLUGIN_NAME = 'homebridge-plugin-switch2sensor';
+export const PLUGIN_NAME = 'homebridge-switch-on-motion-sensor';

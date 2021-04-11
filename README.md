@@ -6,7 +6,7 @@
 </p>
 
 
-# Homebridge Platform Plugin Switch 2 Sensor
+# Homebridge Platform Plugin Switch On Motion Sensor
 
 This is a template Homebridge platform plugin that I use to bridge an action in Apple HomeKit to Alexa.
 

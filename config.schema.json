@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "SwitchToSensorHomebridgePlugin",
+  "pluginAlias": "SwitchToSensor",
   "pluginType": "platform",
   "singular": true,
   "schema": {
@@ -7,7 +7,7 @@
     "properties": {
       "switches": {
         "title": "Switches",
-        "buttonText": "Add Switch 2 Sensor",
+        "buttonText": "Add Switch On Motion Sensor",
         "type": "array",
         "items": {
           "type": "object",

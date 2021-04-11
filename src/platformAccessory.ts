@@ -22,7 +22,7 @@ export class Switch2sensorPlatformAccessory {
     // set accessory information
     this.accessory.getService(this.platform.Service.AccessoryInformation)!
       .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Navision.guru')
-      .setCharacteristic(this.platform.Characteristic.Model, 'Switch2Sensor')
+      .setCharacteristic(this.platform.Characteristic.Model, 'SwitchOnMotionSensor')
       .setCharacteristic(this.platform.Characteristic.SerialNumber, '2021-04-11');
 
     // get the Switch service if it exists, otherwise create a new Switch service
@@ -40,10 +40,9 @@ export class Switch2sensorPlatformAccessory {
 
     // register handlers for the On/Off Characteristic
     this.service.getCharacteristic(this.platform.Characteristic.On)
-      .onSet(this.setOn.bind(this))                // SET - bind to the `setOn` method below
-      .onGet(this.getOn.bind(this));               // GET - bind to the `getOn` method below
+      .onSet(this.setOn.bind(this))
+      .onGet(this.getOn.bind(this));
 
-    // Switch2sensor: add two "motion sensor" services to the accessory
     const motionSensorOneService = this.accessory.getService(accessory.context.device.name + ' Sensor') ||
       this.accessory.addService(this.platform.Service.MotionSensor, accessory.context.device.name + ' Sensor',
         accessory.context.device.UUID + ':sensor');

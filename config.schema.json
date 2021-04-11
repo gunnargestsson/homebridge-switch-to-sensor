@@ -22,8 +22,8 @@
         }
       },
       "logging": {
-        "title": "Loggin",
-        "description": "Log switches",
+        "title": "Log actions",
+        "description": "Log switch actions",
         "default": false,
         "type": "boolean",
         "required": false

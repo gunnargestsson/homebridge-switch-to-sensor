@@ -10,10 +10,6 @@ import { switch2sensorHomebridgePlatform } from './platform';
 export class Switch2sensorPlatformAccessory {
   private service: Service;
 
-  /**
-   * These are just used to create a working switch2sensor
-   * You should implement your own code to track the state of your accessory
-   */
   private switch2sensorStates = {
     On: false,
   };
@@ -31,11 +27,13 @@ export class Switch2sensorPlatformAccessory {
 
     // get the Switch service if it exists, otherwise create a new Switch service
     // you can create multiple services for each accessory
-    this.service = this.accessory.getService(this.platform.Service.Switch) || this.accessory.addService(this.platform.Service.Switch);
+    this.service = this.accessory.getService(accessory.context.device.name + ' Switch') ||
+      this.accessory.addService(this.platform.Service.Switch, accessory.context.device.name + ' Switch',
+        accessory.context.device.UUID + ':switch');
 
     // set the service name, this is what is displayed as the default name on the Home app
     // in this switch2sensor we are using the name we stored in the `accessory.context` in the `discoverDevices` method.
-    this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.switch2sensorDisplayName);
+    this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.name + ' Switch');
 
     // each service must implement at-minimum the "required characteristics" for the given service type
     // see https://developers.homebridge.io/#/service/Switch
@@ -46,14 +44,15 @@ export class Switch2sensorPlatformAccessory {
       .onGet(this.getOn.bind(this));               // GET - bind to the `getOn` method below
 
     // Switch2sensor: add two "motion sensor" services to the accessory
-    const motionSensorOneService = this.accessory.getService('Motion Sensor One') ||
-      this.accessory.addService(this.platform.Service.MotionSensor, 'Motion Sensor One', 'hap-nodejs:accessories:sensor1');
+    const motionSensorOneService = this.accessory.getService(accessory.context.device.name + ' Sensor') ||
+      this.accessory.addService(this.platform.Service.MotionSensor, accessory.context.device.name + ' Sensor',
+        accessory.context.device.UUID + ':sensor');
 
     setInterval(() => {
       // push the new value to HomeKit
       motionSensorOneService.updateCharacteristic(this.platform.Characteristic.MotionDetected, this.switch2sensorStates.On);
 
-      this.platform.log.debug('Triggering motionSensorOneService:', this.switch2sensorStates.On);
+      this.platform.log.debug('Triggering motionSensorService:', this.switch2sensorStates.On);
     }, 10000);
   }
 

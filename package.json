@@ -2,7 +2,7 @@
   "private": false,
   "displayName": "Switch 2 Sensor",
   "name": "homebridge-plugin-switch2sensor",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Turn on a switch to enable a motion sensor.",
   "license": "Apache-2.0",
   "repository": {

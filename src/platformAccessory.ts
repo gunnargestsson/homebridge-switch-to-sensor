@@ -9,7 +9,7 @@ import { switch2sensorHomebridgePlatform } from './platform';
  */
 export class Switch2sensorPlatformAccessory {
   private service: Service;
-
+  private logging: boolean = this.platform.config.logging || false;
   private switch2sensorStates = {
     On: false,
   };
@@ -52,21 +52,26 @@ export class Switch2sensorPlatformAccessory {
       // push the new value to HomeKit
       motionSensorOneService.updateCharacteristic(this.platform.Characteristic.MotionDetected, this.switch2sensorStates.On);
       if (this.switch2sensorStates.On) {
+        if (this.logging) {
+          this.platform.log.info('Set MotionDetected to true');
+        } else {
+          this.platform.log.debug('Set MotionDetected to true');
+        }
         this.switch2sensorStates.On = false;
+        this.service.updateCharacteristic(this.platform.Characteristic.On, this.switch2sensorStates.On);
       }
       this.platform.log.debug('Triggering motionSensorService:', this.switch2sensorStates.On);
-    }, 10000);
+    }, 5000);
   }
 
-  /**
-   * Handle "SET" requests from HomeKit
-   * These are sent when the user changes the state of an accessory, for switch2sensor, turning on a Light bulb.
-   */
-  async setOn(value: CharacteristicValue) {
-    // implement your own code to turn your device on/off
-    this.switch2sensorStates.On = value as boolean;
 
-    this.platform.log.debug('Set Characteristic On ->', value);
+  async setOn(value: CharacteristicValue) {
+    this.switch2sensorStates.On = value as boolean;
+    if (this.logging) {
+      this.platform.log.info('Set Characteristic On ->', value);
+    } else {
+      this.platform.log.debug('Set Characteristic On ->', value);
+    }
   }
 
   async getOn(): Promise<CharacteristicValue> {

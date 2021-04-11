@@ -20,6 +20,13 @@
             }
           }
         }
+      },
+      "logging": {
+        "title": "Loggin",
+        "description": "Log switches",
+        "default": false,
+        "type": "boolean",
+        "required": false
       }
     }
   }

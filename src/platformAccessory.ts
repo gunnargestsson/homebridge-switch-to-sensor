@@ -51,7 +51,9 @@ export class Switch2sensorPlatformAccessory {
     setInterval(() => {
       // push the new value to HomeKit
       motionSensorOneService.updateCharacteristic(this.platform.Characteristic.MotionDetected, this.switch2sensorStates.On);
-
+      if (this.switch2sensorStates.On) {
+        this.switch2sensorStates.On = false;
+      }
       this.platform.log.debug('Triggering motionSensorService:', this.switch2sensorStates.On);
     }, 10000);
   }

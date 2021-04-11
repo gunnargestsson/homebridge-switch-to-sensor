@@ -51,11 +51,18 @@ export class switch2sensorHomebridgePlatform implements DynamicPlatformPlugin {
    */
   discoverDevices() {
 
-    // EXAMPLE ONLY
-    // A real plugin you would discover accessories from the local network, cloud services
-    // or a user-defined array in the platform config.
-
+    // Create Accessories according to the configuration
     const switches = this.config.switches || [];
+
+    // Delete accessories that have been removed from configuration
+    for (const existingAccessory of this.accessories) {
+      if (switches.find(i => i.name === existingAccessory.displayName)) {
+        this.log.info('Existing accessory from cache still in use:', existingAccessory.displayName);
+      } else {
+        this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [existingAccessory]);
+        this.log.info('Removing existing accessory from cache:', existingAccessory.displayName);
+      }
+    }
 
     // loop over the discovered devices and register each one if it has not already been registered
     for (const switch2sensor of switches) {

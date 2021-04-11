@@ -2,7 +2,7 @@
   "private": false,
   "displayName": "Switch On Motion Sensor",
   "name": "homebridge-switch-on-motion-sensor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Turn on a switch to enable a motion sensor.",
   "license": "Apache-2.0",
   "repository": {

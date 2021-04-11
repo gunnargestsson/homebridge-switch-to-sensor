@@ -50,16 +50,16 @@ export class Switch2sensorPlatformAccessory {
     setInterval(() => {
       // push the new value to HomeKit
       motionSensorOneService.updateCharacteristic(this.platform.Characteristic.MotionDetected, this.switch2sensorStates.On);
+      this.platform.log.debug('Triggering motionSensorService:', this.switch2sensorStates.On);
       if (this.switch2sensorStates.On) {
         if (this.logging) {
-          this.platform.log.info('Set MotionDetected to true');
+          this.platform.log.info('Set MotionDetected to true', accessory.context.device.name);
         } else {
-          this.platform.log.debug('Set MotionDetected to true');
+          this.platform.log.debug('Set MotionDetected to true', accessory.context.device.name);
         }
         this.switch2sensorStates.On = false;
         this.service.updateCharacteristic(this.platform.Characteristic.On, this.switch2sensorStates.On);
       }
-      this.platform.log.debug('Triggering motionSensorService:', this.switch2sensorStates.On);
     }, 5000);
   }
 
@@ -67,9 +67,9 @@ export class Switch2sensorPlatformAccessory {
   async setOn(value: CharacteristicValue) {
     this.switch2sensorStates.On = value as boolean;
     if (this.logging) {
-      this.platform.log.info('Set Characteristic On ->', value);
+      this.platform.log.info('Set Characteristic On ->', this.accessory.context.device.name, value);
     } else {
-      this.platform.log.debug('Set Characteristic On ->', value);
+      this.platform.log.debug('Set Characteristic On ->', this.accessory.context.device.name, value);
     }
   }
 

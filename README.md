@@ -8,7 +8,7 @@
 
 # Homebridge Platform Plugin Switch On Motion Sensor
 
-This is a template Homebridge platform plugin that I use to bridge an action in Apple HomeKit to Alexa.
+This is a Homebridge platform plugin that I use to bridge an action in Apple HomeKit to Alexa.
 
 By turning on the switch the motion sensor will be triggered.  The motion sensor will return a motion while then switch is turned on.
 

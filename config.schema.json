@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "SwitchToSendorHomebridgePlugin",
+  "pluginAlias": "SwitchToSensorHomebridgePlugin",
   "pluginType": "platform",
   "singular": true,
   "schema": {

@@ -60,7 +60,7 @@ export class Switch2sensorPlatformAccessory {
         this.switch2sensorStates.On = false;
         this.service.updateCharacteristic(this.platform.Characteristic.On, this.switch2sensorStates.On);
       }
-    }, 5000);
+    }, 1000);
   }
 
 

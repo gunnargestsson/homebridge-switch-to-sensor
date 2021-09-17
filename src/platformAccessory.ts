@@ -10,6 +10,7 @@ import { switch2sensorHomebridgePlatform } from './platform';
 export class Switch2sensorPlatformAccessory {
   private service: Service;
   private logging: boolean = this.platform.config.logging || false;
+  private pushInterval: number = this.platform.config.pushInterval || 5000;
   private switch2sensorStates = {
     On: false,
   };
@@ -60,7 +61,7 @@ export class Switch2sensorPlatformAccessory {
         this.switch2sensorStates.On = false;
         this.service.updateCharacteristic(this.platform.Characteristic.On, this.switch2sensorStates.On);
       }
-    }, 5000);
+    }, this.pushInterval);
   }
 
 

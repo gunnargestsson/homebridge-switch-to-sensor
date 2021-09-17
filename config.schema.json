@@ -21,6 +21,13 @@
           }
         }
       },
+      "pushInterval": {
+        "title": "Push Interval",
+        "description": "Push Inteval for HomeKit",
+        "default": 5000,
+        "type": "integer",
+        "required": false
+      },
       "logging": {
         "title": "Log actions",
         "description": "Log switch actions",
